@@ -2,7 +2,7 @@ public class Activities {
     private final String Activity;
     private int status = 0; // 0 represent undone: 1 represents done
 
-    private Activities(String activity) {
+    public Activities(String activity) {
         Activity = activity;
     }
     public static Activities newActivity(String activity){
@@ -16,9 +16,18 @@ public class Activities {
     public String getActivity(){
         return Activity;
     }
-    public int doneChecker(){
+    public int isDone(){
         return status;
     }
-
+    @Override
+    public String toString() {
+        String listChecker;
+        if (status == 1) {
+            listChecker = "[\u2713]";
+        } else {
+            listChecker = "[x]";
+        }
+        return listChecker + " " + getActivity();
+    }
 
 }
