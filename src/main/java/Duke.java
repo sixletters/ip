@@ -24,7 +24,7 @@ public class Duke {
                 if (Integer.parseInt(command.split(" ")[1]) <= toDoList.size()) {
                     toDoList.get(Integer.parseInt(command.split(" ")[1]) - 1).doIt();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("[\u2713] " + toDoList.get(Integer.parseInt(command.split(" ")[1]) - 1).getActivity());
+                    System.out.println(toDoList.get(Integer.parseInt(command.split(" ")[1]) - 1).toString());
                 } else {
                     System.out.println("Sorry, this activity does not exist");
                 }
@@ -32,23 +32,24 @@ public class Duke {
                 totalActivities++;
                 System.out.println("Got it. I've added this task:");
                 switch (command.split(" ")[0]) {
-                case "todo":
+                case "todo" -> {
                     Activities temp = new Todo(command.split(" ", 2)[1]); // temp is an instance of todos
                     toDoList.add(temp);
                     System.out.println("  " + temp.toString());
                     System.out.println("Now you have " + totalActivities + " tasks in the list");
-                    break;
-                case "deadline":
+                }
+                case "deadline" -> {
                     Activities temp1 = new Deadline(command.split(" ", 2)[1]);// temp1 is an instance of Deadline
                     toDoList.add(temp1);
                     System.out.println("  " + temp1.toString());
                     System.out.println("Now you have " + totalActivities + " tasks in the list");
-                    break;
-                case "event":
+                }
+                case "event" -> {
                     Activities temp2 = new Event(command.split(" ", 2)[1]);// temp2 is an instance of Deadline
                     toDoList.add(new Event(command.split(" ", 2)[1]));
                     System.out.println("  " + temp2.toString());
                     System.out.println("Now you have " + totalActivities + " tasks in the list.");
+                }
                 }
             }
         }

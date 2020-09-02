@@ -2,6 +2,7 @@ public class Todo extends Activities {
     public Todo(String activity) {
         super(activity);
     }
+
     @Override
     public String toString() {
         String listChecker;

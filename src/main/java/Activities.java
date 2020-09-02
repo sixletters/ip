@@ -1,5 +1,5 @@
 public class Activities {
-    private final String Activity;
+    private String Activity;
     private int status = 0; // 0 represent undone: 1 represents done
 
     public Activities(String activity) {
