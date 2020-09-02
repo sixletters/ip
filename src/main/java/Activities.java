@@ -19,6 +19,7 @@ public class Activities {
     public int isDone(){
         return status;
     }
+
     @Override
     public String toString() {
         String listChecker;
