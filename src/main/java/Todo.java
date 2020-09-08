@@ -1,6 +1,6 @@
 public class Todo extends Activities {
     public Todo(String activity) {
-        super(activity);
+        this.Activity = activity;
     }
 
     @Override

@@ -1,7 +1,7 @@
 public class Deadline extends Activities {
     private String by;
     public Deadline(String activity) {
-        super(activity.substring(0,activity.indexOf("/")));
+        this.Activity = activity.substring(0,activity.indexOf("/"));
         this.by = activity.substring(activity.indexOf("/") + 4);
     }
 

@@ -1,7 +1,7 @@
 public class Event extends Activities {
     private String at;
     public Event(String activity) {
-        super(activity.substring(0,activity.indexOf("/")));
+        this.Activity = activity.substring(0,activity.indexOf("/"));
         this.at = activity.substring(activity.indexOf("/") + 4);
     }
 
