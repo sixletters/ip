@@ -5,6 +5,10 @@ public class Deadline extends Activities {
         this.by = activity.substring(activity.indexOf("/") + 4);
     }
 
+    public String byWhen(){
+        return by;
+    }
+
     @Override
     public String toString() {
         String listChecker;

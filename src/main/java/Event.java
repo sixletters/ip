@@ -5,6 +5,9 @@ public class Event extends Activities {
         this.at = activity.substring(activity.indexOf("/") + 4);
     }
 
+    public String atWhen(){
+        return at;
+    }
     @Override
     public String toString() {
         String listChecker;
