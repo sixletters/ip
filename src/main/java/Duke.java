@@ -20,6 +20,23 @@ public class Duke {
                     System.out.println(k + "." + Element.toString());
                     k++;
                 }
+            } else if(command.split(" ")[0].equals("delete")){
+                if(Integer.parseInt(command.split(" ")[1]) <= totalActivities){
+                    System.out.println(" Noted. I've removed this task: ");
+                    System.out.println("  " + toDoList.get(Integer.parseInt(command.split(" ")[1]) - 1).toString());
+                    totalActivities--;
+                    System.out.println("Now you have " + totalActivities + " tasks in the list");
+                    toDoList.remove(Integer.parseInt(command.split(" ")[1]) - 1);
+
+
+                }
+                else {
+                    try {
+                        throw new DukeException();
+                    } catch (DukeException e) {
+                        System.out.println("☹ OOPS!!! I'm sorry, that item does not exist");
+                    }
+                }
             } else if (command.split(" ")[0].equals("done")) {
                 if (Integer.parseInt(command.split(" ")[1]) <= toDoList.size()) {
                     toDoList.get(Integer.parseInt(command.split(" ")[1]) - 1).doIt();
