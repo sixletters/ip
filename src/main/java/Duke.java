@@ -30,18 +30,19 @@ public class Duke {
                 }
             } else {
                 try {
-                    totalActivities++;
-
                     switch (command.split(" ")[0]) {
                         case "todo" :
                             Activities temp = new Todo(command.split(" ", 2)[1]); // temp is an instance of todos
+                            totalActivities++;
                             toDoList.add(temp);
                             System.out.println("Got it. I've added this task:");
                             System.out.println("  " + temp.toString());
                             System.out.println("Now you have " + totalActivities + " tasks in the list");
+                            break;
 
                         case "deadline" :
                             Activities temp1 = new Deadline(command.split(" ", 2)[1]);// temp1 is an instance of Deadline
+                            totalActivities++;
                             toDoList.add(temp1);
                             System.out.println("Got it. I've added this task:");
                             System.out.println("  " + temp1.toString());
@@ -50,6 +51,7 @@ public class Duke {
 
                         case "event" :
                             Activities temp2 = new Event(command.split(" ", 2)[1]);// temp2 is an instance of Deadline
+                            totalActivities++;
                             toDoList.add(new Event(command.split(" ", 2)[1]));
                             System.out.println("Got it. I've added this task:");
                             System.out.println("  " + temp2.toString());
