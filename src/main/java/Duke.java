@@ -11,7 +11,7 @@ public class Duke {
                 " What can I do for you?");
         Scanner sc = new Scanner(System.in);
         int exit = 0;
-        ArrayList<Activities> toDoList = new ArrayList<>();
+        ArrayList<Task> toDoList = new ArrayList<>();
         int totalActivities = 0;
         File f = new File("List.txt");
         try {
@@ -19,39 +19,39 @@ public class Duke {
                 f.createNewFile();
             }
         }catch(IOException e){
-            System.out.println("sorry this file already exists");
+            System.out.println("Error!");
         }
         Scanner fileScanner = new Scanner(f);
         while(fileScanner.hasNext()) {
             String previousTasks = fileScanner.nextLine();
-            int temp = Integer.parseInt(previousTasks.split(" ", 2)[0]);
+            int isDoneIndicator = Integer.parseInt(previousTasks.split(" ", 2)[0]);
             previousTasks = previousTasks.split(" ", 2)[1];
             switch (previousTasks.split(" ")[0]) {
             case "todo":
-                Activities temp0 = new Todo(previousTasks.split(" ", 2)[1]); // temp is an instance of todos
-                if(temp == 1){
-                    temp0.doIt();
+                Task todoItem = new Todo(previousTasks.split(" ", 2)[1]); // temp is an instance of todos
+                if(isDoneIndicator == 1){
+                    todoItem.doIt();
                 }
                 totalActivities++;
-                toDoList.add(temp0);
+                toDoList.add(todoItem);
                 break;
 
             case "deadline":
-                Activities temp1 = new Deadline(previousTasks.split(" ", 2)[1]);// temp1 is an instance of Deadline
-                if(temp == 1){
-                    temp1.doIt();
+                Task deadlineItem = new Deadline(previousTasks.split(" ", 2)[1]);// temp1 is an instance of Deadline
+                if(isDoneIndicator == 1){
+                    deadlineItem.doIt();
                 }
                 totalActivities++;
-                toDoList.add(temp1);
+                toDoList.add(deadlineItem);
                 break;
 
             case "event":
-                Activities temp2 = new Event(previousTasks.split(" ", 2)[1]);// temp2 is an instance of Deadline
-                if(temp == 1){
-                    temp2.doIt();
+                Task eventItem = new Event(previousTasks.split(" ", 2)[1]);// temp2 is an instance of Deadline
+                if(isDoneIndicator == 1){
+                    eventItem.doIt();
                 }
                 totalActivities++;
-                toDoList.add(temp2);
+                toDoList.add(eventItem);
                 break;
             }
         }
@@ -60,10 +60,10 @@ public class Duke {
             if (command.equals("bye")) {
                 try {
                     FileWriter fw = new FileWriter("list.txt");
-                    for(Activities  Element: toDoList){
+                    for(Task  Element: toDoList){
                         String activityDescription = "";
                         if(Element instanceof Todo){
-                            if(Element.isDone() == 1){
+                            if(Element.isDone()){
                                 activityDescription += "1 ";
                             }
                             else{
@@ -74,24 +74,24 @@ public class Duke {
 
                         }
                         else if(Element instanceof Event){
-                            if(Element.isDone() == 1){
+                            if(Element.isDone()){
                                 activityDescription += "1 ";
                             }
                             else{
                                 activityDescription += "0 ";
                             }
                             activityDescription += "event ";
-                            activityDescription += Element.getActivity() + " /by " + ((Event) Element).atWhen();
+                            activityDescription += Element.getActivity() + " /by " + ((Event) Element).getWhen();
 
                         }else if(Element instanceof Deadline){
-                            if(Element.isDone() == 1){
+                            if(Element.isDone()){
                                 activityDescription += "1 ";
                             }
                             else{
                                 activityDescription += "0 ";
                             }
                             activityDescription += "deadline ";
-                            activityDescription += Element.getActivity() + "/at " + ((Deadline) Element).byWhen();
+                            activityDescription += Element.getActivity() + "/at " + ((Deadline) Element).getBy();
 
                         }
                         fw.write( activityDescription + System.lineSeparator());
@@ -105,7 +105,7 @@ public class Duke {
             } else if (command.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 int k = 1;
-                for (Activities  Element: toDoList) {
+                for (Task  Element: toDoList) {
                     System.out.println(k + "." + Element.toString());
                     k++;
                 }
@@ -138,29 +138,29 @@ public class Duke {
                 try {
                     switch (command.split(" ")[0]) {
                         case "todo" :
-                            Activities temp0 = new Todo(command.split(" ", 2)[1]); // temp is an instance of todos
+                            Task todoItem = new Todo(command.split(" ", 2)[1]); // temp is an instance of todos
                             totalActivities++;
-                            toDoList.add(temp0);
+                            toDoList.add(todoItem);
                             System.out.println("Got it. I've added this task:");
-                            System.out.println("  " + temp0.toString());
+                            System.out.println("  " + todoItem.toString());
                             System.out.println("Now you have " + totalActivities + " tasks in the list");
                             break;
 
                         case "deadline" :
-                            Activities temp1 = new Deadline(command.split(" ", 2)[1]);// temp1 is an instance of Deadline
+                            Task deadlineItem = new Deadline(command.split(" ", 2)[1]);// temp1 is an instance of Deadline
                             totalActivities++;
-                            toDoList.add(temp1);
+                            toDoList.add(deadlineItem);
                             System.out.println("Got it. I've added this task:");
-                            System.out.println("  " + temp1.toString());
+                            System.out.println("  " + deadlineItem.toString());
                             System.out.println("Now you have " + totalActivities + " tasks in the list");
                             break;
 
                         case "event" :
-                            Activities temp2 = new Event(command.split(" ", 2)[1]);// temp2 is an instance of Deadline
+                            Task eventItem = new Event(command.split(" ", 2)[1]);// temp2 is an instance of Deadline
                             totalActivities++;
                             toDoList.add(new Event(command.split(" ", 2)[1]));
                             System.out.println("Got it. I've added this task:");
-                            System.out.println("  " + temp2.toString());
+                            System.out.println("  " + eventItem.toString());
                             System.out.println("Now you have " + totalActivities + " tasks in the list.");
                             break;
                         default :

@@ -1,4 +1,4 @@
-public class Todo extends Activities {
+public class Todo extends Task {
     public Todo(String activity) {
         this.Activity = activity;
     }
@@ -6,7 +6,7 @@ public class Todo extends Activities {
     @Override
     public String toString() {
         String listChecker;
-        if (this.isDone() == 1) {
+        if (this.isDone()) {
             listChecker = "[\u2713]";
         } else {
             listChecker = "[x]";

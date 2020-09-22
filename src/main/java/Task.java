@@ -1,22 +1,22 @@
-abstract class Activities {
+abstract class Task {
     protected String Activity;
-    private int status = 0; // 0 represent undone: 1 represents done
+    private boolean status = false; // 0 represent undone: 1 represents done
 
     public void doIt() {
-        status = 1;
+        status = true;
     }
 
     public String getActivity(){
         return Activity;
     }
-    public int isDone(){
+    public boolean isDone(){
         return status;
     }
 
     @Override
     public String toString() {
         String listChecker;
-        if (status == 1) {
+        if (status) {
             listChecker = "[\u2713]";
         } else {
             listChecker = "[x]";

@@ -1,22 +1,22 @@
-public class Deadline extends Activities {
-    private String by;
+public class Deadline extends Task {
+    private String deadlineTime;
     public Deadline(String activity) {
         this.Activity = activity.substring(0,activity.indexOf("/"));
-        this.by = activity.substring(activity.indexOf("/") + 4);
+        this.deadlineTime = activity.substring(activity.indexOf("/") + 4);
     }
 
-    public String byWhen(){
-        return by;
+    public String getBy(){
+        return deadlineTime;
     }
 
     @Override
     public String toString() {
         String listChecker;
-        if (this.isDone() == 1) {
+        if (this.isDone()) {
             listChecker = "[\u2713]";
         } else {
             listChecker = "[x]";
         }
-        return "[D]" + listChecker + " " + getActivity() + "(by: " + by + ")";
+        return "[D]" + listChecker + " " + getActivity() + "(by: " + deadlineTime + ")";
     }
 }
