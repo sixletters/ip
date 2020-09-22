@@ -5,20 +5,15 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        if(Integer.parseInt(command.split(" ")[1]) <= tasks.getTasks().size()){
-            try {
+        try {
+            if (Integer.parseInt(command.split(" ")[1]) <= tasks.getTasks().size()) {
                 ui.showDelete(tasks, Integer.parseInt(command.split(" ")[1]) - 1);
                 tasks.getTasks().remove(Integer.parseInt(command.split(" ")[1]) - 1);
-            }catch (IndexOutOfBoundsException e){
-                ui.showError("Sorry this task does not exist");
-            }
-        }
-        else {
-            try {
-                throw new DukeException();
-            } catch (DukeException e) {
+            } else {
                 ui.showDoesNotExist();
             }
+        } catch (ArrayIndexOutOfBoundsException e){
+            ui.showError("There are no elements in the list");
         }
 
     }
