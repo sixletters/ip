@@ -1,6 +1,6 @@
 public class ListCommand extends Command {
     public ListCommand(String command) {
-        super(command);
+        this.command = command;
     }
 
     @Override

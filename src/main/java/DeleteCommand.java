@@ -1,6 +1,6 @@
 public class DeleteCommand extends Command {
     public DeleteCommand(String command) {
-        super(command);
+        this.command = command;
     }
 
     @Override
@@ -8,7 +8,7 @@ public class DeleteCommand extends Command {
         try {
             if (Integer.parseInt(command.split(" ")[1]) <= tasks.getTasks().size()) {
                 ui.showDelete(tasks, Integer.parseInt(command.split(" ")[1]) - 1);
-                tasks.getTasks().remove(Integer.parseInt(command.split(" ")[1]) - 1);
+                tasks.remove(Integer.parseInt(command.split(" ")[1]) - 1);
             } else {
                 ui.showDoesNotExist();
             }

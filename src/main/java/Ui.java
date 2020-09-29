@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -32,8 +33,8 @@ public class Ui {
     }
     public void showDelete(TaskList Tasks,int index){
         System.out.println(" Noted. I've removed this task: ");
-        System.out.println("  " + Tasks.getTasks().get(index).toString());
-        System.out.println("Now you have " + (Tasks.getTasks().size() - 1) + " tasks in the list");
+        System.out.println("  " + Tasks.get(index).toString());
+        System.out.println("Now you have " + (Tasks.size() - 1) + " tasks in the list");
     }
 
     public void showDoesNotExist(){
@@ -42,13 +43,25 @@ public class Ui {
 
     public void showDone(TaskList tasks,int index){
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(tasks.getTasks().get(index).toString());
+        System.out.println(tasks.get(index).toString());
     }
 
     public void showAdd(TaskList tasks,int index){
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + tasks.getTasks().get(index).toString());
-        System.out.println("Now you have " + tasks.getTasks().size() + " tasks in the list");
+        System.out.println("  " + tasks.get(index).toString());
+        System.out.println("Now you have " + tasks.size() + " tasks in the list");
 
+    }
+    public void showFind(ArrayList<Task> tasks){
+        if(tasks.size() > 0){
+            System.out.println("Here are the matching tasks in your list:");
+            int k = 1;
+            for (Task  Element: tasks) {
+                System.out.println(k + "." + Element.toString());
+                k++;
+            }
+        }else{
+            System.out.println("Sorry no such item exists in the current list");
+        }
     }
 }

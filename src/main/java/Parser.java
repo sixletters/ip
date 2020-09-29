@@ -13,7 +13,10 @@ public class Parser {
         } else if (command.split(" ")[0].equals("done")) {
             return new DoneCommand(command);
 
-        } else {
+        } else if (command.split(" ")[0].equals("find")){
+            return new FindCommand(command);
+        }
+        else {
             return new AddCommand(command);
         }
 

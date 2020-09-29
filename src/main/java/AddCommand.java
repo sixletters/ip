@@ -2,7 +2,7 @@ public class AddCommand extends Command {
 
 
     public AddCommand(String command) {
-        super(command);
+        this.command = command;
     }
 
     @Override
@@ -11,19 +11,19 @@ public class AddCommand extends Command {
             switch (command.split(" ")[0]) {
             case "todo" :
                 Task todoItem = new Todo(command.split(" ", 2)[1]); // temp is an instance of todos
-                tasks.getTasks().add(todoItem);
+                tasks.add(todoItem);
                 ui.showAdd(tasks,tasks.getTasks().indexOf(todoItem));
                 break;
 
             case "deadline" :
                 Task deadlineItem = new Deadline(command.split(" ", 2)[1]);// temp1 is an instance of Deadline
-                tasks.getTasks().add(deadlineItem);
+                tasks.add(deadlineItem);
                 ui.showAdd(tasks,tasks.getTasks().indexOf(deadlineItem));
                 break;
 
             case "event" :
                 Task eventItem = new Event(command.split(" ", 2)[1]);// temp2 is an instance of Deadline
-                tasks.getTasks().add(eventItem);
+                tasks.add(eventItem);
                 ui.showAdd(tasks,tasks.getTasks().indexOf(eventItem));
                 break;
             default :
