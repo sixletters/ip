@@ -15,7 +15,7 @@ public class FindCommand extends Command{
 
     /**
      * Finds and searches the TaskList for Taks that matches the word inputted by user.
-     * e.g. if "find Book" is being inputted, tasks with the word book inside the activity name will be printed.
+     * e.g. if "find Book" is being inputted, tasks with the word book inside the activity name would be printed.
      * @param tasks  The Task-list for the command to be executed on.
      * @param ui The ui of type UI that prints and interacts the intended messages.
      * @param storage The storage of type Storage that handles the storing of data.
