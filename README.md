@@ -24,3 +24,5 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+## USER GUIDE
+Duke is a desktop Command-line interface app for managing tasks. It keeps track of your tasks with categorization into Events, Todos and Deadlines.
