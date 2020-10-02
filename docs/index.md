@@ -1,37 +1,165 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/sixletters/ip/edit/gh-pages/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## USER GUIDE
+Duke is a desktop Command-line interface app for managing tasks. It keeps track of your tasks with categorization into Events, Todos and Deadlines.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Features
+- Add a **todo**.
+- Add a **deadline**.
+- Add an **event**.
+- **List** out all tasks.
+- **Delete** tasks.
+- **Find** tasks with a keyword.
+- set tasks to **Done**.
+- Exit the program.
 
-### Markdown
+## Usage
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+`todo` - Adds a todo task to the List
 
-```markdown
-Syntax highlighted code block
+Format: todo Description
 
-# Header 1
-## Header 2
-### Header 3
+**Example**
 
-- Bulleted
-- List
+input: `todo basketball training`
 
-1. Numbered
-2. List
+Expected output:
+```
+Got it. I've added this task:
+  [T][x] basketball training
+Now you have 1 tasks in the list
+```
+`deadline` - Adds a deadline task to the List
 
-**Bold** and _Italic_ and `Code` text
+Format: todo Description /by Time
+* Time can be both date and time but must be indicated after `/by`
+* Shows an error message when `/by` is not typed in after description.
 
-[Link](url) and ![Image](src)
+
+**Example**
+
+input: `deadline homework /by friday`
+
+Expected output:
+```
+Got it. I've added this task:
+  [D][x] homework (by: friday)
+Now you have 1 tasks in the list
+```
+`event` - Adds an event task to the List
+
+Format: todo Description /at Time
+* Time can be both date and time but must be indicated after `/by`
+* Shows an error message when `/at` is not typed in after description.
+
+
+**Example**
+
+input: `event Team Meeting /at Monday 1pm`
+
+Expected output:
+```
+Got it. I've added this task:
+  [E][x] Team Meeting (at: Monday 1pm)
+Now you have 1 tasks in the list
+```
+`list` - Lists and prints out all tasks
+
+Format: list
+* List order is in chronological order. The first task added in will be indexed 1.
+
+
+**Example**
+
+input: `list`
+
+Expected output:
+```
+Here are the tasks in your list:
+1.[E][x] Team Meeting (at: Monday 1pm)
+2.[D][x] homework (by: friday)
+3.[T][x] basketball training
+```
+`delete` - Deletes tasks at a specified index.
+
+Format: delete index
+* List order is in chronological order. The first task added in will be indexed 1.
+* Index must not be bigger than size of list, if not an error message will show.
+
+**Example**
+
+input: `Delete 2`
+
+Expected output:
+```
+ Noted. I've removed this task: 
+  [T][x] basketball training
+Now you have 1 tasks in the list
+```
+`find` - Find tasks with a specific keyword
+
+Format: find keyword
+* A list with the tasks that match the keyword will be displayed
+
+**Example**
+
+current list:
+```
+Here are the tasks in your list:
+1.[T][x] read book
+2.[T][x] buy book
+3.[E][x] book meeting (at: 2pm)
+4.[T][x] basketball
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+input: `find book`
 
-### Jekyll Themes
+Expected output:
+```
+Here are the matching tasks in your list:
+1.[T][x] read book
+2.[T][x] buy book
+3.[E][x] book meeting (at: 2pm)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sixletters/ip/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```
 
-### Support or Contact
+`done` - Sets a task at a specific index to be done.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Format: done index
+* List order is in chronological order. The first task added in will be indexed 1.
+* Index must not be bigger than size of list, if not an error message will show.
+
+**Example**
+
+input: `Done 2`
+
+Expected output:
+```
+ Nice! I've marked this task as done:
+ [T][✓] buy book
+```
+`Bye` - Exits the program and stores the tasks in the list in a text file
+
+Format: bye
+* All information in the remaining list will be stored and will be carried over next time Duke is ran.
+
+**Example**
+
+input: `bye`
+
+Expected output:
+```
+Bye. Hope to see you again soon!
+```
+
+## COMMAND SUMMARY
+
+Feature | Input Format | Example
+------------ | ------------- | ----
+Adding a todo task | todo description | `todo meeting`
+Adding an event task | event description /at time | `event basketball training /at friday 2pm`
+Adding a deadline task | deadline description /by time | `deadline project /by thursday 5pm`
+Listing out all tasks | list | `list`
+Deleting a specified task at an index | delete index | `delete 2`
+Find a task with a keyword | find keyword | `find book`
+Set a task at a specified index to done  | done index | `done 2`
+Exit the program | bye | `bye
